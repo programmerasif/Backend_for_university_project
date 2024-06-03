@@ -166,4 +166,5 @@ studenSchema.statics.isUserExists = async function (id: string) {
   const existingUser = await Student.findOne({ id });
   return existingUser;
 };
+
 export const Student = model<TStudent,StudentModel>('Student', studenSchema);

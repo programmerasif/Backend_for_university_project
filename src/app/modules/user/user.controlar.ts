@@ -1,30 +1,27 @@
-import { UserServices } from "./user.service";
-import { Request, Response } from 'express';
-// creat student 
-const creatStudent = async (req: Request, res: Response) => {
-    try {
-      const {password,student} = req.body;
-      //  here we call the services function
-      const result = await UserServices.creatStudentIntoDB(password,student);
-  
-      // here I am sending response to user
-      res.status(200).json({
-        success: true,
-        message: 'Student is created successfully',
-        data: result,
-      });
-    } catch (error) {
-      console.log(error);
-      const errorMessage = (error as Error).message || 'Unknown error occurred';
-      // sending error response
-      res.status(500).json({
-        success: false,
-        message: 'An error occurred while creating the student',
-        error: errorMessage,
-      });
-    }
-  };
+import catchAsync from '../../utils/catchAsync';
+import sendResponse from '../../utils/sendResponse';
+import { UserServices } from './user.service';
 
-  export const UsersControlers = {
-    creatStudent
-  }
+// creat student
+const creatStudent = catchAsync(async (req, res) => {
+  const { password, student } = req.body;
+  //  here we call the services function
+  const result = await UserServices.creatStudentIntoDB(password, student);
+
+  // here I am sending response to user
+  // res.status(200).json({
+  //   success: true,
+  //   message: 'Student is created successfully',
+  //   data: result,
+  // });
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Student is creat succesfully',
+    data: result,
+  });
+});
+
+export const UsersControlers = {
+  creatStudent,
+};

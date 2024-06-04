@@ -1,4 +1,3 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { studentServicess } from './student.services';
 import catchAsync from '../../utils/catchAsync';
 

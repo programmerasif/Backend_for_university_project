@@ -128,6 +128,11 @@ const studenSchema = new Schema<TStudent>({
   profileImg: {
     type: String,
   },
+  admissinoSemister: {
+    type: Schema.Types.ObjectId,
+    ref: 'AcademicSemister'
+  }
+  ,
   isDeleted: {
     type: Boolean,
     default: false,

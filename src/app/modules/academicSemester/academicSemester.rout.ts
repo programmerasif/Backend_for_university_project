@@ -7,10 +7,25 @@ const router = Router();
 
 router.post(
   '/creat-accademic-semister',
-  valideteRequest(AcademicSamisterValidation.creatAcademicSemisterValidationSchema),
+  valideteRequest(
+    AcademicSamisterValidation.creatAcademicSemisterValidationSchema,
+  ),
   AcademicSemisterControlers.creatStudent,
 );
 
-router.get('/',AcademicSemisterControlers.getAllAcademicSemesters)
+router.get('/', AcademicSemisterControlers.getAllAcademicSemesters);
 
+router.get(
+  '/:semesterId',
+  AcademicSemisterControlers.getSingleAcademicSemester,
+);
+
+router.patch(
+  '/:semesterId',
+  valideteRequest(
+    AcademicSamisterValidation.updateAcademicSemesterValidationSchema,
+  ),
+  AcademicSemisterControlers.updateAcademicSemester,
+);
 export const AcademicSemisterRout = router;
+

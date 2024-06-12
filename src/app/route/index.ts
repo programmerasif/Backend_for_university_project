@@ -7,6 +7,8 @@ import { AcademicDepertmentsRout } from '../modules/academicDepertment/academicD
 import { FacultyRoutes } from '../modules/Faculty/faculty.rout';
 import { AdminRoutes } from '../modules/Admin/admin.rout';
 import { CourseRoutes } from '../modules/course/course.rout';
+import { semesterRegistrationRoutes } from '../modules/semisterRegistration/semisterRegistration.rout';
+import { offeredCourseRoutes } from '../modules/offeredCourse/offeredCourse.rout';
 
 const route = Router();
 
@@ -42,6 +44,14 @@ const moduleRouts = [
   {
     path: '/courses',
     route: CourseRoutes,
+  },
+  {
+    path: '/semester-registrations',
+    route: semesterRegistrationRoutes,
+  },
+  {
+    path: '/offered-courses',
+    route: offeredCourseRoutes,
   },
 ];
 moduleRouts.forEach(routes => route.use(routes.path, routes.route)); //here im using for each to avoid DRY all the route and path will coming ans set here like route.use("/Example",exampleRoutes)

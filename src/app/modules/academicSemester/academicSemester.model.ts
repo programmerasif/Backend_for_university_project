@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { TAcademicSemester} from './academicSemester.interface';
 import { AcademicSchemaCode, AcademicSchemaName, Month } from './academicSemester.constance';
-import { string } from 'zod';
+
 
 
 const academicSemisterSchema = new Schema<TAcademicSemester>({

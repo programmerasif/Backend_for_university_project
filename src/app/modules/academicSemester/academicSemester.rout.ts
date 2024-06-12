@@ -10,7 +10,7 @@ router.post(
   valideteRequest(
     AcademicSamisterValidation.creatAcademicSemisterValidationSchema,
   ),
-  AcademicSemisterControlers.creatStudent,
+  AcademicSemisterControlers.creatAcademicSemister,
 );
 
 router.get('/', AcademicSemisterControlers.getAllAcademicSemesters);

@@ -1,4 +1,4 @@
-import { Schema, model, connect, Types, Model } from 'mongoose';
+import { Types, Model } from 'mongoose';
 
 export type TUserName = {
   firstName: string;
@@ -38,6 +38,7 @@ export type TStudent = {
   profileImg: string;
   admissinoSemister: Types.ObjectId;
   isDeleted: boolean;
+  academicDepartment: Types.ObjectId;
 };
 
 // for creating static

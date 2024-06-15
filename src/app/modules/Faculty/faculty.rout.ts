@@ -3,6 +3,7 @@ import express from 'express';
 import { updateFacultyValidationSchema } from './faculty.validation';
 import valideteRequest from '../../middlewars/valideteRequest';
 import { FacultyControllers } from './faculty.controler';
+import auth from '../../middlewars/authValidation';
 
 const router = express.Router();
 
@@ -16,6 +17,6 @@ router.patch(
 
 router.delete('/:id', FacultyControllers.deleteFaculty);
 
-router.get('/', FacultyControllers.getAllFaculties);
+router.get('/',auth() ,FacultyControllers.getAllFaculties);
 
 export const FacultyRoutes = router;

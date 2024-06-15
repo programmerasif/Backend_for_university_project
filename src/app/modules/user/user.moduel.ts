@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
-import { TUser } from "./user.interface";
+import { TUser, UserModel } from "./user.interface";
 import bcrypt from 'bcrypt';
+import { date } from "zod";
 
-const userSchema = new Schema<TUser>(
+const userSchema = new Schema<TUser, UserModel>(
     {
       id: {
         type: String,
@@ -12,6 +13,9 @@ const userSchema = new Schema<TUser>(
       password: {
         type: String,
         required: true,
+      },
+      passwordChangedAt: {
+        type: Date
       },
       needsPasswordChange: {
         type: Boolean,
@@ -54,4 +58,22 @@ const userSchema = new Schema<TUser>(
     doc.password = '';
     next();
   });
-  export const User = model<TUser>('User', userSchema);
+
+  
+  userSchema.statics.isUserExistsByCustomId = async function (
+    id: string,
+  ): Promise<TUser | null> {
+    console.log(id);
+    
+    return await User.findOne({ id })
+  };
+  
+  userSchema.statics.isPasswordMatched = async function (
+    plainTextPass: string,hasPass: string
+  ): Promise<TUser | null | boolean> {
+    
+   return await bcrypt.compare(plainTextPass,hasPass)
+  };
+  
+
+  export const User = model<TUser,UserModel>('User', userSchema);
